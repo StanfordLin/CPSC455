@@ -23,3 +23,57 @@ function toggleNav() {
 burger.addEventListener("click", function () {
   toggleNav();
 });
+
+function addRecipe() {}
+
+let recipeObj = [
+  {
+    name: "Au Gratin Potatoes",
+    ingredients: [
+      { name: "milk", value: 100, unit: "mL" },
+      { name: "pineapple", value: 2, unit: "slices" }
+    ]
+  },
+  {
+    name: "Schnitzel",
+    ingredients: [
+      { name: "milk", value: 100, unit: "mL" },
+      { name: "pineapple", value: 2, unit: "slices" }
+    ]
+  }
+];
+let recipeListData = document.getElementById("recipeListData");
+
+// https://stackoverflow.com/questions/45812160/unexpected-comma-using-map
+
+let mappedData = recipeObj
+  .map(function (o) {
+    return `
+  <div class="recipeCard">
+  <p class="p-name"> Name: ${o.name} </p>
+  <p class="p-ingredients"> Ingredients: </p>
+  ${o.ingredients
+    .map(function (i) {
+      return `<p>${i.name} ${i.value} ${i.unit}</p>`;
+    })
+    .join("")}
+  </div>
+  `;
+  })
+  .join("");
+
+recipeListData.insertAdjacentHTML("beforeend", mappedData);
+
+// recipeObj.forEach(function (element) {
+//   recipeListData.insertAdjacentHTML(
+//     "beforeend",
+//     "<li>" + element.name + " : " + element.price + " </li>",
+//     element.ingredients.forEach(function (ingredient) {
+//       recipeListData.insertAdjacentHTML(
+//         "beforeend",
+//         "<li>" + ingredient.name + " : " + ingredient.unit + " </li>"
+//       );
+//       // return ("<li>" + "blah" + " </li>")
+//     })
+//   );
+// });
