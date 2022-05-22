@@ -8,6 +8,8 @@
 //   <a href="https://parceljs.org" target="_blank" rel="noopener noreferrer">here</a>.
 // </div>
 // `;
+
+// For the hamburger
 // Selection of HTML objects
 const burger = document.querySelector(".burger i");
 const nav = document.querySelector(".nav");
@@ -24,22 +26,22 @@ burger.addEventListener("click", function () {
   toggleNav();
 });
 
-function addRecipe() {}
-
+// For displaying content from JSON
 let recipeObj = [
   {
-    name: "Au Gratin Potatoes",
-    ingredients: [
-      { name: "milk", value: 100, unit: "mL" },
-      { name: "pineapple", value: 2, unit: "slices" }
-    ]
+    title: "Au Gratin Potatoes",
+    ingredients: ["100 mL Milk", "2 slices of Cheese"],
+    steps: ["Cut potatoes", "Add cheese", "Add milk", "Heat for 3 degrees"]
   },
   {
-    name: "Schnitzel",
+    title: "Schnitzel",
     ingredients: [
-      { name: "milk", value: 100, unit: "mL" },
-      { name: "pineapple", value: 2, unit: "slices" }
-    ]
+      "1 piece of veal",
+      "100 mL of crumbs"
+      // { name: "veal", value: 1, unit: "piece" },
+      // { name: "crumbs", value: 100, unit: "mL" }
+    ],
+    steps: ["Put crumbs on veal", "Chuck it in the fryer"]
   }
 ];
 let recipeListData = document.getElementById("recipeListData");
@@ -50,19 +52,77 @@ let mappedData = recipeObj
   .map(function (o) {
     return `
   <div class="recipeCard">
-  <p class="p-name"> Name: ${o.name} </p>
+  <p class="p-title"> Title: ${o.title} </p>
   <p class="p-ingredients"> Ingredients: </p>
   ${o.ingredients
-    .map(function (i) {
-      return `<p>${i.name} ${i.value} ${i.unit}</p>`;
+    .map(function (ingredient) {
+      return `<li>${ingredient}</li>`;
     })
     .join("")}
+  <p class="p-steps"> Steps: </p>
+    ${o.steps
+      .map(function (step) {
+        return `<li>${step}</li>`;
+      })
+      .join("")}
   </div>
   `;
   })
   .join("");
 
 recipeListData.insertAdjacentHTML("beforeend", mappedData);
+
+// For form submition/additional JS
+const form = document.forms[0];
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  const { title, ingredients, steps } = this.elements;
+
+  const ingredientsDelimited = ingredients.value.split(";");
+  console.log("ingredientsDelimited", ingredientsDelimited);
+  const stepsDelimited = steps.value.split(";");
+  let tempObj = {
+    title: title,
+    ingredients: ingredientsDelimited,
+    steps: stepsDelimited
+  };
+
+  let recipeListData = document.getElementById("recipeListData");
+
+  // https://stackoverflow.com/questions/45812160/unexpected-comma-using-map
+
+  let mappedData = `
+  <div class="recipeCard">
+  <p class="p-title"> Title: ${tempObj.title.value} </p>
+  <p class="p-ingredients"> Ingredients: </p>
+  ${ingredientsDelimited
+    .map(function (ingredient) {
+      return `<li>${ingredient}</li>`;
+    })
+    .join("")}
+    <p class="p-steps"> Steps: </p>
+    ${stepsDelimited
+      .map(function (ingredient) {
+        return `<li>${ingredient}</li>`;
+      })
+      .join("")}
+  </div>
+  `;
+
+  recipeListData.insertAdjacentHTML("beforeend", mappedData);
+
+  // or
+  // const { title, ingredients, steps } = event.target.elements;
+  // recipeObj.push({
+  //   title: "Au Gratin Potatoes",
+  //   ingredients: [
+  //     { title: "milk", value: 100, unit: "mL" },
+  //     { title: "pineapple", value: 2, unit: "slices" }
+  //   ]
+  // });
+  console.log(title.value, ingredients.value, steps.value);
+});
 
 // recipeObj.forEach(function (element) {
 //   recipeListData.insertAdjacentHTML(
