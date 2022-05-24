@@ -159,3 +159,18 @@ function deleteAllRecipes() {
   console.log("Yeah, deleted");
   // document.getElementById("demo").innerHTML = "Hello World";
 }
+
+// Clear input button
+
+const clearInputButton = document.getElementById("clearInputButton");
+
+clearInputButton.addEventListener("click", clearInputFields);
+
+function clearInputFields() {
+  // Clear title
+  document.getElementById("title").value = "";
+  // Clear Ingredients
+  document.getElementById("ingredients").value = "";
+  // Clear Steps
+  document.getElementById("steps").value = "";
+}
