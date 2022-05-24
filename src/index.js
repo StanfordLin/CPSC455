@@ -48,23 +48,29 @@ let recipeListData = document.getElementById("recipeListData");
 
 // https://stackoverflow.com/questions/45812160/unexpected-comma-using-map
 
+// Responsive cards: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_column_cards
+
 let mappedData = recipeObj
   .map(function (o) {
     return `
-  <div class="recipeCard">
-  <p class="p-title"> Title: ${o.title} </p>
-  <p class="p-ingredients"> Ingredients: </p>
-  ${o.ingredients
-    .map(function (ingredient) {
-      return `<li>${ingredient}</li>`;
-    })
-    .join("")}
-  <p class="p-steps"> Steps: </p>
-    ${o.steps
-      .map(function (step) {
-        return `<li>${step}</li>`;
-      })
-      .join("")}
+    <div class="column">
+    <div class="recipeCard">
+      <h3 class="recipe-title">${o.title}</h3>
+      <b class="recipe-ingredients">Ingredients</b>
+      ${o.ingredients
+        .map(function (ingredient) {
+          return `<ul>${ingredient}</ul>`;
+        })
+        .join("")}
+     <br/>
+      <b>Steps</b>
+
+      ${o.steps
+        .map(function (step) {
+          return `<ul>${step}</ul>`;
+        })
+        .join("")}
+    </div>
   </div>
   `;
   })
@@ -93,20 +99,24 @@ form.addEventListener("submit", function (event) {
   // https://stackoverflow.com/questions/45812160/unexpected-comma-using-map
 
   let mappedData = `
-  <div class="recipeCard">
-  <p class="p-title"> Title: ${tempObj.title.value} </p>
-  <p class="p-ingredients"> Ingredients: </p>
-  ${ingredientsDelimited
-    .map(function (ingredient) {
-      return `<li>${ingredient}</li>`;
-    })
-    .join("")}
-    <p class="p-steps"> Steps: </p>
-    ${stepsDelimited
-      .map(function (ingredient) {
-        return `<li>${ingredient}</li>`;
-      })
-      .join("")}
+    <div class="column">
+    <div class="recipeCard">
+      <h3 class="recipe-title">${tempObj.title.value}</h3>
+      <b class="recipe-ingredients">Ingredients</b>
+      ${ingredientsDelimited
+        .map(function (ingredient) {
+          return `<ul>${ingredient}</ul>`;
+        })
+        .join("")}
+     <br/>
+      <b>Steps</b>
+
+      ${stepsDelimited
+        .map(function (step) {
+          return `<ul>${step}</ul>`;
+        })
+        .join("")}
+    </div>
   </div>
   `;
 

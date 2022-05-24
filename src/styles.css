@@ -42,6 +42,33 @@ header {
   display: none;
 }
 
+/* Style the counter cards */
+.recipeCard {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {
+  margin: 0 -5px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 @media screen and (max-width: 678px) {
   .burger {
     display: block;
@@ -65,5 +92,11 @@ header {
 
   .nav-active {
     right: 0;
+  }
+  /* Responsive columns */
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
   }
 }
