@@ -26,21 +26,31 @@
       </div>
     </header>
     <script src="/src/index.js"></script>
+    
+    <div class="inputForm">
     <form>
       <label for="title">Title</label>
       <input type="text" id="title" title="title" required>
   
-      <label for="ingredients">Ingredients</label>
+      <label for="ingredients">Ingredients (use ; to seperate ingredients ex. 100 mL milk;200mL breadcrumbs)</label>
       <textarea id="ingredients" name="ingredients" required></textarea>
   
-      <label for="steps">Steps</label>
+      <label for="steps">Steps (use ; seperate steps)</label>
       <textarea id="steps" name="steps" required></textarea>
-  
-      <button type="submit">Submit</button>
-      <button id="clearInputButton" type="button">Clear Inputs</button>
-      
-      <button id="deleteAllRecipesButton" type="button">Delete all recipes</button>
+  <br />
+  <br />
 
+      <button type="submit">Submit</button>
+      <br />
+      <br />
+
+      <button id="clearInputButton" type="button">Clear Inputs</button>
+      <br />
+      <br />
+
+
+      <button id="deleteAllRecipesButton" type="button">Delete all recipes</button>
+    </div>
   </form>
   <div class="row">
     <ul id="recipeListData">
