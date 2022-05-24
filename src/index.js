@@ -137,3 +137,13 @@ form.addEventListener("submit", function (event) {
 //     })
 //   );
 // });
+
+// For delete all recipes button
+const deleteButton = document.getElementById("deleteAllRecipesButton");
+
+deleteButton.addEventListener("click", deleteAllRecipes);
+
+function deleteAllRecipes() {
+  console.log("Yeah");
+  // document.getElementById("demo").innerHTML = "Hello World";
+}
