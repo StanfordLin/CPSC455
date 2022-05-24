@@ -138,12 +138,24 @@ form.addEventListener("submit", function (event) {
 //   );
 // });
 
-// For delete all recipes button
+// For delete all button
 const deleteButton = document.getElementById("deleteAllRecipesButton");
+
+// Calling the function after click event occurs
+// deleteButton.addEventListener("click", function () {
+//   deleteAllRecipes();
+// });
 
 deleteButton.addEventListener("click", deleteAllRecipes);
 
 function deleteAllRecipes() {
-  console.log("Yeah");
+  const recipeCards = document.querySelectorAll(".recipeCard");
+
+  for (const recipeCard of recipeCards) {
+    console.log("Removing yeahhhh for loop");
+    // ✅ Remove multiple classes from element
+    recipeCard.remove();
+  }
+  console.log("Yeah, deleted");
   // document.getElementById("demo").innerHTML = "Hello World";
 }
